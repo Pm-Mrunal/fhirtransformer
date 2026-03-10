@@ -98,7 +98,7 @@ public class DIGITHCMProductVariantMapper {
      * @return InventoryItem
      */
     public static InventoryItem buildInventoryFromProductVariant(ProductVariant productVariant) {
-
+        // This method is used for testing purpose once product attributes are added to productVariant API this needs to be commented and the above can be used
         InventoryItem inventoryItem = new InventoryItem();
         Long lastModifiedMillis = productVariant.getAuditDetails().getLastModifiedTime();
         Date lastModified = (lastModifiedMillis != null) ? new Date(lastModifiedMillis) : null;
