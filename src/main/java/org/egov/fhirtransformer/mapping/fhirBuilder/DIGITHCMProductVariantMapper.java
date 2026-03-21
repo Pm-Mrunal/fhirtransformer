@@ -119,15 +119,17 @@ public class DIGITHCMProductVariantMapper {
             String system = identifier.getSystem();
 
             if (system.equals(Constants.IDENTIFIER_SYSTEM_PRDCT)) {
-                productVariant.setProductId(inventoryItem.getIdElement().getId());
+                productVariant.setProductId(identifier.getValue());
 
             } else if (system.equals(Constants.IDENTIFIER_SYSTEM_SKUPV)) {
-                productVariant.setSku(inventoryItem.getIdentifierFirstRep().getValue());
+                productVariant.setSku(identifier.getValue());
             }
             else if (system.equals(Constants.IDENTIFIER_SYSTEM_PV)) {
+                productVariant.setId(identifier.getValue());
                 productVariant.setVariation(inventoryItem.getNameFirstRep().getName());
             }
         }
+        productVariant.setRowVersion(Constants.ROW_VERSION);
 
         return productVariant;
 
