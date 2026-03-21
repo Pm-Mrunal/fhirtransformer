@@ -27,9 +27,8 @@ public class DIGITHCMStockMapper {
                 .setSystem(Constants.IDENTIFIER_SYSTEM_WAYBILL)
                 .setValue(stock.getWayBillNumber());
         supplyDelivery.addIdentifier(identifier);
-
         Long dateOfEntry = stock.getDateOfEntry();
-        DateType dateOfEntryDt = (dateOfEntry != null) ? new DateType(new Date(dateOfEntry)) : null;
+        DateTimeType dateOfEntryDt = (dateOfEntry != null) ? new DateTimeType(new Date(dateOfEntry)) : null;
         supplyDelivery.setOccurrence(dateOfEntryDt);
 
         SupplyDelivery.SupplyDeliverySuppliedItemComponent suppliedItemComponent =

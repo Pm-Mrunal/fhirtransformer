@@ -290,7 +290,7 @@ public class ApiIntegrationService {
      */
     public RequestInfo formRequestInfo() {
         RequestInfo requestInfo = new RequestInfo();
-        requestInfo.setAuthToken("");
+        requestInfo.setAuthToken("083a5b07-5db7-4e36-9424-2565ade5a7ee");
         User user = new User();
         user.setTenantId(Constants.TENANT_ID);
         user.setUuid(UUID.randomUUID().toString());

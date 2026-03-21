@@ -36,9 +36,13 @@ public class DIGITHCMProductVariantMapper {
         Identifier SKUidentifier = new Identifier()
                 .setSystem(Constants.IDENTIFIER_SYSTEM_SKUPV)
                 .setValue(productVariant.getSku());
+        Identifier productidentifier = new Identifier()
+                .setSystem(Constants.IDENTIFIER_SYSTEM_PRDCT)
+                .setValue(productVariant.getProductId());
 
         inventoryItem.addIdentifier(identifier);
         inventoryItem.addIdentifier(SKUidentifier);
+        inventoryItem.addIdentifier(productidentifier);
 
         // Adding Category
         inventoryItem.addCategory(new CodeableConcept().addCoding(
@@ -48,13 +52,19 @@ public class DIGITHCMProductVariantMapper {
                         .setDisplay(productVariant.getProduct().getType())));
 
         // Adding baseUnit
-        inventoryItem.setBaseUnit(new CodeableConcept().addCoding(
-                new Coding()
-                        .setSystem(Constants.UOM_SYSTEM)
-                        .setCode(productVariant.getBaseUnit())
-                        .setDisplay(productVariant.getBaseUnit())));
+        if (productVariant.getBaseUnit() != null) {
+            inventoryItem.setBaseUnit(new CodeableConcept().addCoding(
+                    new Coding()
+                            .setSystem(Constants.UOM_SYSTEM)
+                            .setCode(productVariant.getBaseUnit())
+                            .setDisplay(productVariant.getBaseUnit())
+            ));
+        }
+
         // Adding NetContent
-        inventoryItem.setNetContent(new Quantity(productVariant.getNetContent()));
+        if (productVariant.getNetContent() != null) {
+            inventoryItem.setNetContent(new Quantity(productVariant.getNetContent().longValue()));
+        }
 
         // Adding Name Type
         InventoryItem.InventoryItemNameComponent nameComponent = new InventoryItem.InventoryItemNameComponent()
@@ -75,7 +85,7 @@ public class DIGITHCMProductVariantMapper {
 
         // Adding Manufacturer as Responsible Organization
         InventoryItem.InventoryItemResponsibleOrganizationComponent responsibleOrgComponent = new InventoryItem.InventoryItemResponsibleOrganizationComponent()
-                .setOrganization(new Reference().setDisplay(productVariant.getProduct().getManufacturer()))
+                .setOrganization(new Reference().setDisplay(productVariant.getProductId()))
                 .setRole(new CodeableConcept().addCoding(
                         new Coding()
                         .setSystem(Constants.RESPORG_SYSTEM_PV)
