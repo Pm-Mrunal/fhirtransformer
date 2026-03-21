@@ -122,7 +122,10 @@ public class FhirApiController {
         ProductVariantResponse response = diService.fetchAllProductVariants(urlParams, request);
         if (response == null || response.getProductVariant() == null)
             return ResponseEntity.noContent().build();
-        String productVariants = ftService.convertProductVariantsToFHIR(response.getProductVariant(), urlParams, 10);
+        Integer totalCount = response.getTotalCount() != null
+                ? response.getTotalCount().intValue() : 0;
+
+        String productVariants = ftService.convertProductVariantsToFHIR(response.getProductVariant(), urlParams, totalCount);
         return ResponseEntity.ok(productVariants);
     }
 
