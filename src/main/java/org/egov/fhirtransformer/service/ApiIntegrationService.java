@@ -36,10 +36,13 @@ public class ApiIntegrationService {
     @Autowired
     private RestTemplate restTemplate;
 
+    @Value("${app.tenant-id}")
+    private String tenantId;
+
     @Value("${facility.search.url}")
     private String facilityUrl;
 
-    @Value("${productVariant.search.url}")
+    @Value("${product.variant.search.url}")
     private String productVariantUrl;
 
     @Value("${stock.search.url}")
@@ -279,20 +282,19 @@ public class ApiIntegrationService {
         URLParams urlParams = new URLParams();
         urlParams.setLimit(idList.size());
         urlParams.setOffset(0);
-        urlParams.setTenantId(Constants.TENANT_ID);
+        urlParams.setTenantId(tenantId);
         return urlParams;
     }
 
     /**
      * Creates {@link RequestInfo} with default tenant and user metadata.
-     *
      * @return populated {@link RequestInfo}
      */
     public RequestInfo formRequestInfo() {
         RequestInfo requestInfo = new RequestInfo();
         requestInfo.setAuthToken("083a5b07-5db7-4e36-9424-2565ade5a7ee");
         User user = new User();
-        user.setTenantId(Constants.TENANT_ID);
+        user.setTenantId(tenantId);
         user.setUuid(UUID.randomUUID().toString());
         requestInfo.setUserInfo(user);
         return requestInfo;
