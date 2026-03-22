@@ -5,6 +5,7 @@ import ca.uhn.fhir.context.support.DefaultProfileValidationSupport;
 import ca.uhn.fhir.validation.FhirValidator;
 import ca.uhn.fhir.validation.ValidationResult;
 
+import org.egov.fhirtransformer.mapping.requestBuilder.LocationToBoundaryService;
 import org.hl7.fhir.common.hapi.validation.support.CommonCodeSystemsTerminologyService;
 import org.hl7.fhir.common.hapi.validation.support.InMemoryTerminologyServerValidationSupport;
 import org.hl7.fhir.common.hapi.validation.support.PrePopulatedValidationSupport;
@@ -25,6 +26,8 @@ import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Custom FHIR R5 validator configured with DIGIT-specific profiles
@@ -36,6 +39,7 @@ public class CustomFHIRValidator {
     private final FhirContext ctx;
     private final FhirValidator validator;
     private final PrePopulatedValidationSupport support;
+    private static final Logger logger = LoggerFactory.getLogger(CustomFHIRValidator.class);
 
     @Autowired
     public CustomFHIRValidator(FhirContext ctx) {
@@ -74,14 +78,14 @@ public class CustomFHIRValidator {
                         if (resource instanceof StructureDefinition) {
                             StructureDefinition sd = (StructureDefinition) resource;
                             support.addStructureDefinition(sd);
-                            System.out.println("Loaded profile: " + sd.getUrl());
+                            logger.info("Loaded profile: " + sd.getUrl());
                         }
                         else if (resource instanceof CodeSystem cs) {
                             support.addCodeSystem(cs);
-                            System.out.println("Loaded CodeSystem: " + cs.getUrl());
+                            logger.info("Loaded CodeSystem: " + cs.getUrl());
                         } else if (resource instanceof ValueSet vs) {
                             support.addValueSet(vs);
-                            System.out.println("Loaded ValueSet: " + vs.getUrl());
+                            logger.info("Loaded ValueSet: " + vs.getUrl());
                         }
                     }
                 }

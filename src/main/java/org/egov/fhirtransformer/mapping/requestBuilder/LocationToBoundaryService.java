@@ -2,6 +2,7 @@ package org.egov.fhirtransformer.mapping.requestBuilder;
 
 import digit.web.models.*;
 import org.egov.fhirtransformer.common.Constants;
+import org.egov.fhirtransformer.repository.KafkaProducerService;
 import org.egov.fhirtransformer.service.ApiIntegrationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -10,6 +11,8 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Service responsible for transforming FHIR Location–derived
@@ -29,6 +32,9 @@ public class LocationToBoundaryService {
 
     @Value("${boundary.update.url}")
     private String boundaryUpdateUrl;
+
+    private static final Logger logger = LoggerFactory.getLogger(LocationToBoundaryService.class);
+
 
     /**
      * Transforms and persists BoundaryRelation records derived from Locations.
@@ -106,8 +112,8 @@ public class LocationToBoundaryService {
                 BoundaryRelationshipRequest boundaryRelationshipRequest = new BoundaryRelationshipRequest();
                 boundaryRelationshipRequest.setRequestInfo(apiIntegrationService.formRequestInfo());
                 boundaryRelationshipRequest.setBoundaryRelationship(br);
-                System.out.println("boundaryRelationshipRequest" + boundaryRelationshipRequest);
-                System.out.println("br" + br);
+                logger.info("boundaryRelationshipRequest" + boundaryRelationshipRequest);
+                logger.info("br" + br);
                 apiIntegrationService.sendRequestToAPI(boundaryRelationshipRequest, createUrl);
             }
         } catch (Exception e) {

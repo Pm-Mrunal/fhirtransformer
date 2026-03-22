@@ -49,7 +49,7 @@ public class Constants {
     public static final String FACILITIES_API_PATH= "/fetchAllFacilities";
     public static final String PRODUCT_VARIANT_API_PATH= "/fetchAllProductVariants";
 
-<<<<<<< HEAD
+
     // Pagination / Query Constants
     public static final String SELF = "SELF";
     public static final String FIRST = "FIRST";
