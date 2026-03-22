@@ -62,7 +62,7 @@ public class Constants {
     public static final String PRODUCT_VARIANT_API_PATH= "/fetchAllProductVariants";
 
     public static final String TENANT_ID = "dev";
-    public static final String HIERARCHY_TYPE = "PERFORMAN";
+    public static final String HIERARCHY_TYPE = "ADMIN";
     public static final boolean INCLUDE_CHILDREN = false;
     public static final String NEW_IDS = "newIDs";
     public static final String EXISTING_IDS = "existingIDs";

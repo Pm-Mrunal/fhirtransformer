@@ -5,6 +5,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import digit.web.models.BoundarySearchResponse;
+import org.egov.common.contract.models.RequestInfoWrapper;
 import org.egov.common.contract.request.RequestInfo;
 import org.egov.common.models.core.URLParams;
 import org.egov.common.models.facility.FacilityBulkResponse;
@@ -182,8 +183,9 @@ public class FhirApiController {
      */
     @PostMapping("/fetchAllBoundaries")
     public ResponseEntity<String> fetchAllBoundaries(@Valid @ModelAttribute BoundaryRelationshipSearchCriteria boundaryRelationshipSearchCriteria
-            , @Valid @RequestBody RequestInfo requestInfo
+              ,@RequestBody RequestInfoWrapper wrapper
     ) {
+        RequestInfo requestInfo = wrapper.getRequestInfo();
         BoundarySearchResponse response = diService.fetchAllBoundaries(boundaryRelationshipSearchCriteria, requestInfo);
         String boundaries = ftService.convertBoundaryRelationshipToFHIR(response.getTenantBoundary());
         return ResponseEntity.ok(boundaries);
