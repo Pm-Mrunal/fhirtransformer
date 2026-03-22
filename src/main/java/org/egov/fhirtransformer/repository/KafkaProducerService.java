@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import java.time.Instant;
 import java.util.List;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import java.util.stream.Collectors;
 
 /**
@@ -25,6 +27,8 @@ public class KafkaProducerService {
     private final KafkaTemplate<String, String> kafkaTemplate;
 
     private final FhirContext ctx;
+
+    private static final Logger logger = LoggerFactory.getLogger(KafkaProducerService.class);
 
     @Value("${kafka.dlq.topic}")
     private String dlqTopic;
@@ -69,7 +73,7 @@ public class KafkaProducerService {
         dlqJson.set("errors", mapper.readTree(jsonArray));
 
         String finalJson = mapper.writeValueAsString(dlqJson);
-        System.out.println(finalJson);
+        logger.info(finalJson);
         // Publish to Kafka
         kafkaTemplate.send(dlqTopic, bundleId, finalJson);
     }

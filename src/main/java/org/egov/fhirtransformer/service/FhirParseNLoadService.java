@@ -19,7 +19,6 @@ import org.hl7.fhir.r5.model.InventoryReport;
 import org.hl7.fhir.r5.model.SupplyDelivery;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;

@@ -2,13 +2,10 @@ package org.egov.fhirtransformer.mapping.requestBuilder;
 
 import org.egov.common.models.core.URLParams;
 import org.egov.common.models.facility.*;
-import org.egov.fhirtransformer.common.Constants;
 import org.egov.fhirtransformer.service.ApiIntegrationService;
-import org.egov.fhirtransformer.utils.MapUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
