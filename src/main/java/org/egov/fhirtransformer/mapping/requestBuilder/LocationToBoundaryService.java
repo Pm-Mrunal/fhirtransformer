@@ -106,6 +106,8 @@ public class LocationToBoundaryService {
                 BoundaryRelationshipRequest boundaryRelationshipRequest = new BoundaryRelationshipRequest();
                 boundaryRelationshipRequest.setRequestInfo(apiIntegrationService.formRequestInfo());
                 boundaryRelationshipRequest.setBoundaryRelationship(br);
+                System.out.println("boundaryRelationshipRequest" + boundaryRelationshipRequest);
+                System.out.println("br" + br);
                 apiIntegrationService.sendRequestToAPI(boundaryRelationshipRequest, createUrl);
             }
         } catch (Exception e) {

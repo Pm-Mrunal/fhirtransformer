@@ -24,7 +24,9 @@ import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 /**
@@ -230,9 +232,13 @@ public class ApiIntegrationService {
      */
     public BoundarySearchResponse fetchAllBoundaries( BoundaryRelationshipSearchCriteria boundaryRelationshipSearchCriteria,RequestInfo requestInfo) {
         URI uri = formBoundaryUri(boundaryRelationshipSearchCriteria, boundaryRelationshipUrl);
+        Map<String, Object> body = new HashMap<>();
+        body.put("RequestInfo", requestInfo);
+
         HttpHeaders headers = new HttpHeaders();
         headers.setContentType(MediaType.APPLICATION_JSON);
-        HttpEntity<RequestInfo> entity = new HttpEntity<>(requestInfo, headers);
+        HttpEntity<Map<String, Object>> entity = new HttpEntity<>(body, headers);
+
         ResponseEntity<BoundarySearchResponse> response = restTemplate.exchange(
                 uri,
                 HttpMethod.POST,
