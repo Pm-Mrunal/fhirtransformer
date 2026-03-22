@@ -3,6 +3,7 @@ package org.egov.fhirtransformer.mapping.fhirBuilder;
 import org.egov.common.models.stock.*;
 import org.egov.fhirtransformer.common.Constants;
 import org.hl7.fhir.r5.model.*;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.time.OffsetDateTime;
 import java.util.UUID;
@@ -13,6 +14,9 @@ import java.util.Date;
  * to FHIR resources and back.
  */
 public class DIGITHCMStockMapper {
+
+    @Value("${app.tenant-id}")
+    private static String tenantId;
 
     /**
      * Creates a FHIR {@link SupplyDelivery} resource from a DIGIT {@link Stock}.
@@ -140,7 +144,7 @@ public class DIGITHCMStockMapper {
     public static Stock buildStockFromSupplyDelivery(SupplyDelivery supplyDelivery) {
         // Implementation for reverse mapping if needed
         Stock stock = new Stock();
-        stock.setTenantId(Constants.TENANT_ID);
+        stock.setTenantId(tenantId);
 
         //Defaulting the values for mandatory fields
         stock.setSenderType(SenderReceiverType.WAREHOUSE);
@@ -238,7 +242,7 @@ public class DIGITHCMStockMapper {
 
         StockReconciliation stockRecon = new StockReconciliation();
         //Defaulting the values for mandatory fields
-        stockRecon.setTenantId(Constants.TENANT_ID);
+        stockRecon.setTenantId(tenantId);
         stockRecon.setReferenceId(UUID.randomUUID().toString());
         stockRecon.setReferenceIdType(ReferenceIdType.OTHER.toString());
 

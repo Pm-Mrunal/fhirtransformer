@@ -3,6 +3,8 @@ package org.egov.fhirtransformer.mapping.fhirBuilder;
 import org.egov.common.models.product.ProductVariant;
 import org.egov.fhirtransformer.common.Constants;
 import org.hl7.fhir.r5.model.*;
+import org.springframework.beans.factory.annotation.Value;
+
 import java.util.UUID;
 
 import java.util.Date;
@@ -12,6 +14,17 @@ import java.util.Date;
  */
 
 public class DIGITHCMProductVariantMapper {
+
+
+    @Value("${app.tenant-id}")
+    private static String tenantId;
+
+    /**
+     * Builds a FHIR {@link InventoryItem} resource from the given {@link ProductVariant}.
+     * This method transforms product variant domain data into a standardized FHIR InventoryItem
+     * @param productVariant the source product variant containing inventory details
+     * @return a populated {@link InventoryItem} FHIR resource
+     */
     public static InventoryItem buildInventoryFromProductVariant(ProductVariant productVariant) {
 
         InventoryItem inventoryItem = new InventoryItem();
@@ -114,7 +127,7 @@ public class DIGITHCMProductVariantMapper {
     public static ProductVariant buildProductVariantFromInventoryItem(InventoryItem inventoryItem) {
         ProductVariant productVariant = new ProductVariant();
         //Defaulting the values for mandatory fields
-        productVariant.setTenantId(Constants.TENANT_ID);
+        productVariant.setTenantId(tenantId);
         for (Identifier identifier : inventoryItem.getIdentifier()) {
             String system = identifier.getSystem();
 

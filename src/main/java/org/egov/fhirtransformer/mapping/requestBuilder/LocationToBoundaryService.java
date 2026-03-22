@@ -27,6 +27,9 @@ public class LocationToBoundaryService {
     @Autowired
     private GenericCreateOrUpdateService genericCreateOrUpdateService;
 
+    @Value("${app.tenant-id}")
+    private String tenantId;
+
     @Value("${boundary.create.url}")
     private String boundaryCreateUrl;
 
@@ -86,7 +89,7 @@ public class LocationToBoundaryService {
         try{
             BoundaryRelationshipSearchCriteria criteria = new BoundaryRelationshipSearchCriteria();
             criteria.setCodes(idList);
-            criteria.setTenantId(Constants.TENANT_ID);
+            criteria.setTenantId(tenantId);
             criteria.setHierarchyType(Constants.HIERARCHY_TYPE);
             criteria.setIncludeChildren(Constants.INCLUDE_CHILDREN);
             BoundarySearchResponse boundarySearchResponse = apiIntegrationService.fetchAllBoundaries(criteria, apiIntegrationService.formRequestInfo());

@@ -3,17 +3,22 @@ package org.egov.fhirtransformer.mapping.fhirBuilder;
 import org.egov.common.models.facility.Facility;
 import org.egov.fhirtransformer.common.Constants;
 import org.hl7.fhir.r5.model.*;
+import org.springframework.beans.factory.annotation.Value;
 
 import java.util.List;
 import java.util.UUID;
 
 import java.util.Date;
 
+
 /**
  * Mapper utility for converting DIGIT boundary master data
  * to FHIR {@link Location} resources and back.
  */
 public class DIGITHCMFacilityMapper {
+
+    @Value("${app.tenant-id}")
+    private static String tenantId;
 
     /**
      * Creates a FHIR {@link Location} resource from a DIGIT {@code Facility}.
@@ -87,7 +92,7 @@ public class DIGITHCMFacilityMapper {
     public static Facility convertFhirLocationToFacility(Location location) {
         Facility facility = new Facility();
 
-        facility.setTenantId(Constants.TENANT_ID);
+        facility.setTenantId(tenantId);
         // Map other necessary fields from Location to Facility
 
         //Map from FHIR
