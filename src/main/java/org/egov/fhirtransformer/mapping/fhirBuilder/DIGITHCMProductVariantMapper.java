@@ -4,9 +4,6 @@ import org.egov.common.models.product.ProductVariant;
 import org.egov.fhirtransformer.common.Constants;
 import org.hl7.fhir.r5.model.*;
 import org.springframework.beans.factory.annotation.Value;
-
-import java.util.UUID;
-
 import java.util.Date;
 
 /**

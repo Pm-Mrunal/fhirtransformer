@@ -1,8 +1,6 @@
 package org.egov.fhirtransformer.mapping.fhirBuilder;
 
 import java.util.Collections;
-import java.util.UUID;
-
 import digit.web.models.BoundaryRelation;
 import digit.web.models.EnrichedBoundary;
 import org.egov.fhirtransformer.common.Constants;

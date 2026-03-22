@@ -4,10 +4,7 @@ import org.egov.common.models.facility.Facility;
 import org.egov.fhirtransformer.common.Constants;
 import org.hl7.fhir.r5.model.*;
 import org.springframework.beans.factory.annotation.Value;
-
 import java.util.List;
-import java.util.UUID;
-
 import java.util.Date;
 
 

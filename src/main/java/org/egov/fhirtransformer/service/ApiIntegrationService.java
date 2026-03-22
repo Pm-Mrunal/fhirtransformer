@@ -2,7 +2,6 @@ package org.egov.fhirtransformer.service;
 
 import digit.web.models.BoundaryRelationshipSearchCriteria;
 import digit.web.models.BoundarySearchResponse;
-import org.checkerframework.checker.units.qual.C;
 import org.egov.common.contract.request.RequestInfo;
 import org.egov.common.contract.request.User;
 import org.egov.common.contract.response.ResponseInfo;
@@ -12,7 +11,6 @@ import org.egov.common.models.facility.FacilitySearchRequest;
 import org.egov.common.models.product.ProductVariantResponse;
 import org.egov.common.models.product.ProductVariantSearchRequest;
 import org.egov.common.models.stock.*;
-import org.egov.fhirtransformer.common.Constants;
 import org.egov.fhirtransformer.web.controller.FhirApiController;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,7 +20,6 @@ import org.springframework.http.*;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-
 import java.net.URI;
 import java.util.HashMap;
 import java.util.List;

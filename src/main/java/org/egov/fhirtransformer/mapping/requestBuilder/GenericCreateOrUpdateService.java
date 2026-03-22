@@ -4,7 +4,6 @@ import org.egov.fhirtransformer.common.Constants;
 import org.egov.fhirtransformer.utils.BundleBuilder;
 import org.egov.fhirtransformer.utils.MapUtils;
 import org.springframework.stereotype.Service;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;

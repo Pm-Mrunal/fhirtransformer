@@ -1,7 +1,6 @@
 package org.egov.fhirtransformer.utils;
 
 import org.egov.fhirtransformer.common.Constants;
-
 import java.util.*;
 
 /**

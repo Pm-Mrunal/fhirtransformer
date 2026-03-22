@@ -4,8 +4,6 @@ import ca.uhn.fhir.context.FhirContext;
 import ca.uhn.fhir.context.support.DefaultProfileValidationSupport;
 import ca.uhn.fhir.validation.FhirValidator;
 import ca.uhn.fhir.validation.ValidationResult;
-
-import org.egov.fhirtransformer.mapping.requestBuilder.LocationToBoundaryService;
 import org.hl7.fhir.common.hapi.validation.support.CommonCodeSystemsTerminologyService;
 import org.hl7.fhir.common.hapi.validation.support.InMemoryTerminologyServerValidationSupport;
 import org.hl7.fhir.common.hapi.validation.support.PrePopulatedValidationSupport;
@@ -15,7 +13,6 @@ import org.hl7.fhir.r5.model.StructureDefinition;
 import org.hl7.fhir.instance.model.api.IBaseResource;
 import org.hl7.fhir.r5.model.CodeSystem;
 import org.hl7.fhir.r5.model.ValueSet;
-
 import java.io.InputStream;
 import java.net.URISyntaxException;
 import java.nio.file.DirectoryStream;
@@ -23,7 +20,6 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Objects;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.slf4j.Logger;
