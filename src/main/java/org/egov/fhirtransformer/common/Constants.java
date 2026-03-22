@@ -49,6 +49,7 @@ public class Constants {
     public static final String FACILITIES_API_PATH= "/fetchAllFacilities";
     public static final String PRODUCT_VARIANT_API_PATH= "/fetchAllProductVariants";
 
+<<<<<<< HEAD
     // Pagination / Query Constants
     public static final String SELF = "SELF";
     public static final String FIRST = "FIRST";
@@ -62,7 +63,7 @@ public class Constants {
     public static final String LOCATION = "Location";
     public static final String INVENTORY_ITEM = "InventoryItem";
     public static final String LOCATION_PREFIX = "Location/";
-    public static final String HIERARCHY_TYPE = "PERFORMAN";
+    public static final String HIERARCHY_TYPE = "ADMIN";
     public static final boolean INCLUDE_CHILDREN = false;
     public static final String NEW_IDS = "newIDs";
     public static final String EXISTING_IDS = "existingIDs";
